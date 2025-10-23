@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elegant Flora Boutique",
-  description: "Beautiful AI-powered website creation platform",
+  title: "Taskify - Youth Job Platform",
+  description: "Connect young workers with local household jobs. Find flexible work opportunities for painting, cleaning, gardening, and more.",
 };
 
 export default function RootLayout({

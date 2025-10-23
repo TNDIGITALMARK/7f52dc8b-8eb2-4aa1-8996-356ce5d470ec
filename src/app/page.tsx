@@ -1,37 +1,96 @@
-export const dynamic = 'force-dynamic'
+'use client';
 
-export default function Index() {
+import Image from 'next/image';
+import { Header } from '@/components/youthwork/Header';
+import { Footer } from '@/components/youthwork/Footer';
+import { JobCard } from '@/components/youthwork/JobCard';
+import { CategoryIcon } from '@/components/youthwork/CategoryIcon';
+import { NotificationCard } from '@/components/youthwork/NotificationCard';
+import { mockJobs } from '@/lib/mock-data';
+import { Flower2, Sparkles, Paintbrush, Armchair } from 'lucide-react';
+
+export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center max-w-2xl px-4">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your App</h1>
-        <p className="text-xl mb-6 text-gray-600">
-          This template is configured to be absolutely lenient - builds never fail on validation errors.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-left">
-          <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-            <h3 className="font-semibold text-green-800 mb-2">✅ Always Builds</h3>
-            <ul className="text-green-700 space-y-1">
-              <li>• TypeScript errors ignored</li>
-              <li>• ESLint warnings ignored</li>
-              <li>• Global error boundaries</li>
-              <li>• Asset type safety</li>
-            </ul>
-          </div>
-          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <h3 className="font-semibold text-blue-800 mb-2">🚀 Production Ready</h3>
-            <ul className="text-blue-700 space-y-1">
-              <li>• Next.js 15.5.2 App Router</li>
-              <li>• Vercel optimized</li>
-              <li>• SSR/SEO friendly</li>
-              <li>• Browser API protection</li>
-            </ul>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="bg-hero-gradient py-12 md:py-16 relative overflow-hidden">
+        <div className="container-youthwork">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Hero Text */}
+            <div className="text-white z-10">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                Earn Cash.
+                <br />
+                Learn Skills. Your
+                <br />
+                Community Awaits.
+              </h1>
+              <button className="btn-primary mt-6">
+                Get Started
+              </button>
+            </div>
+
+            {/* Hero Illustration */}
+            <div className="relative h-64 md:h-80 flex items-center justify-center">
+              <Image
+                src="/generated/hero-character.png"
+                alt="Young worker with paint roller"
+                width={300}
+                height={300}
+                className="object-contain drop-shadow-2xl"
+              />
+            </div>
           </div>
         </div>
-        <p className="mt-6 text-gray-500">
-          Start building your amazing project here! This template will never fail builds due to validation errors.
-        </p>
-      </div>
+
+        {/* Notification Card - Positioned absolutely on larger screens */}
+        <div className="hidden lg:block absolute top-8 right-8 z-20">
+          <NotificationCard
+            title="Notification"
+            messages={[
+              { text: 'New job near you!', type: 'info' },
+              { text: 'You got the job', type: 'success' },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Job Cards Section */}
+      <section className="py-12 flex-1">
+        <div className="container-youthwork">
+          {/* Job Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {mockJobs.slice(0, 3).map((job) => (
+              <JobCard
+                key={job.id}
+                id={job.id}
+                title={job.title}
+                employerName={job.employerName}
+                employerAvatar={job.employerAvatar}
+                hourlyRate={job.hourlyRate}
+                distance={job.distance}
+                duration={job.duration}
+                skills={job.skills}
+              />
+            ))}
+          </div>
+
+          {/* Browse by Category Section */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold text-center mb-8">Browse by Category</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+              <CategoryIcon icon={Flower2} label="Gardening" />
+              <CategoryIcon icon={Sparkles} label="Cleaning" />
+              <CategoryIcon icon={Paintbrush} label="Painting" />
+              <CategoryIcon icon={Armchair} label="Moving" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }

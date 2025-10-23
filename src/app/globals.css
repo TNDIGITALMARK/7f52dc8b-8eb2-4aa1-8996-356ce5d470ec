@@ -1,59 +1,97 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/*
+ * YOUTHWORK (TASKIFY) DESIGN SYSTEM
+ * Pixel-perfect design system extracted from reference mockup
+ * All colors converted to HSL for theme compatibility
+ */
 
 :root {
-  /* Pure white background with crisp black text */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 0%;
+  /* === COLOR SYSTEM === */
+  /* Background colors */
+  --background: 210 20% 96%; /* #F3F4F6 - Light gray page background */
+  --foreground: 218 17% 15%; /* #1F2937 - Dark text */
 
-  /* Clean white cards with black text */
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 0%;
+  /* Card colors */
+  --card: 0 0% 100%; /* #FFFFFF - White cards */
+  --card-foreground: 218 17% 15%; /* #1F2937 - Card text */
 
-  /* Popovers with white background */
+  /* Popover colors */
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 0%;
+  --popover-foreground: 218 17% 15%;
 
-  /* Primary: Black with white text */
-  --primary: 0 0% 0%;
-  --primary-foreground: 0 0% 100%;
+  /* Primary blue (#3B82F6) - Buttons, links, interactive elements */
+  --primary: 217 91% 60%; /* #3B82F6 */
+  --primary-foreground: 0 0% 100%; /* White text on primary */
+  --primary-dark: 221 83% 53%; /* #2563EB - Hover state */
 
-  /* Secondary: Light gray background with black text */
-  --secondary: 0 0% 97%;
-  --secondary-foreground: 0 0% 0%;
+  /* Secondary green (#10B981) - Success, pricing */
+  --secondary: 160 84% 39%; /* #10B981 */
+  --secondary-foreground: 0 0% 100%;
 
-  /* Muted: Subtle gray with darker text */
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 40%;
+  /* Muted colors */
+  --muted: 210 20% 96%; /* #F3F4F6 - Badges, subtle backgrounds */
+  --muted-foreground: 220 9% 46%; /* #6B7280 - Muted text */
 
-  /* Accent: Light gray */
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 0%;
+  /* Accent colors */
+  --accent: 214 95% 93%; /* #DBEAFE - Light blue backgrounds */
+  --accent-foreground: 217 91% 60%;
 
-  /* Destructive: Clean red */
+  /* Destructive colors */
   --destructive: 0 70% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  /* Borders: Subtle gray */
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 0%;
+  /* Border colors */
+  --border: 214 20% 90%; /* #E5E7EB */
+  --input: 214 20% 90%;
+  --ring: 217 91% 60%; /* Primary blue for focus rings */
 
-  /* Minimal rounded corners */
-  --radius: 0.375rem;
+  /* Dark navy (#2C3E50) for header/footer */
+  --dark-navy: 210 29% 24%; /* #2C3E50 */
 
-  /* Sidebar: Clean white with black text */
+  /* Hero gradient colors */
+  --hero-gradient-start: 211 52% 24%; /* #1E3A5F */
+  --hero-gradient-end: 211 42% 36%; /* #2E5C8C */
+
+  /* Border radius */
+  --radius: 0.5rem; /* 8px base */
+  --radius-sm: 0.5rem; /* 8px - buttons */
+  --radius-md: 0.75rem; /* 12px - notifications */
+  --radius-lg: 1rem; /* 16px - cards */
+
+  /* === YOUTHWORK CUSTOM PROPERTIES === */
+  /* Spacing system */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+
+  /* Component sizing */
+  --header-height: 70px;
+  --footer-height: 60px;
+  --avatar-size: 80px;
+  --category-icon-size: 72px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-button: 0 2px 4px rgba(59, 130, 246, 0.3);
+  --shadow-notification: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+  /* Sidebar (preserved for compatibility) */
   --sidebar-background: 0 0% 100%;
-  --sidebar-foreground: 0 0% 0%;
-  --sidebar-primary: 0 0% 0%;
+  --sidebar-foreground: 218 17% 15%;
+  --sidebar-primary: 217 91% 60%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 96%;
-  --sidebar-accent-foreground: 0 0% 0%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 0 0% 0%;
+  --sidebar-accent: 210 20% 96%;
+  --sidebar-accent-foreground: 218 17% 15%;
+  --sidebar-border: 214 20% 90%;
+  --sidebar-ring: 217 91% 60%;
 }
 
 .dark {
@@ -168,28 +206,124 @@ All colors MUST be HSL.
   border-color: hsl(var(--border));
 }
 
+/* === TYPOGRAPHY & BASE STYLES === */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* Minimal, clean typography */
+/* Heading styles - using Poppins for headings */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 700;
   letter-spacing: -0.025em;
+  color: hsl(var(--foreground));
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem; /* 40px - Hero headline */
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem; /* 32px - Section headers */
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px - Card prices */
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1.125rem; /* 18px - Subheadings */
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 1rem; /* 16px */
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+}
+
+/* Paragraph and text elements */
+p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: hsl(var(--primary-dark));
+}
+
+/* Button base styles */
+button {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Form elements */
+input, textarea, select {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
   color: hsl(var(--foreground));
 }
 
-/* Clean button styles */
-button {
-  font-weight: 500;
+/* Strong and emphasis */
+strong {
+  font-weight: 600;
 }
 
-/* Subtle shadows for depth */
+/* Small text */
+small {
+  font-size: 0.875rem;
+}
+
+/* === YOUTHWORK CUSTOM UTILITY CLASSES === */
+
+/* Shadow system matching design reference */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.shadow-button {
+  box-shadow: var(--shadow-button);
+}
+
+.shadow-notification {
+  box-shadow: var(--shadow-notification);
+}
+
+/* Legacy shadow classes for compatibility */
 .shadow-sm {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
@@ -200,4 +334,122 @@ button {
 
 .shadow-md {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Gradient backgrounds */
+.bg-hero-gradient {
+  background: linear-gradient(135deg, hsl(var(--hero-gradient-start)), hsl(var(--hero-gradient-end)));
+}
+
+.bg-dark-navy {
+  background-color: hsl(var(--dark-navy));
+}
+
+/* Container utilities */
+.container-youthwork {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Card component base */
+.card-youthwork {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.card-youthwork:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+/* Button variants */
+.btn-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-button);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: hsl(var(--primary-dark));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--foreground));
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: hsl(var(--border));
+}
+
+/* Avatar component */
+.avatar-youthwork {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 9999px;
+  border: 4px solid white;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Category icon wrapper */
+.category-icon-wrapper {
+  width: var(--category-icon-size);
+  height: var(--category-icon-size);
+  border-radius: 9999px;
+  background: hsl(var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.category-icon-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Badge component */
+.badge-distance {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-price {
+  color: hsl(var(--secondary));
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Notification card */
+.notification-card {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-notification);
+  padding: 1.25rem;
+  width: 280px;
 }
